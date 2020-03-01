@@ -1,5 +1,5 @@
 <?php
-class Database
+class Database_Old
 {
     // Note: specify your own database credentials
     private $host = "localhost";
@@ -10,11 +10,14 @@ class Database
 
     private $password = "root"; // Need root here for Mac connection
 
-    private static $instance = null;
-
     public $conn;
 
-    private function __construct(){
+    // get the database connection
+    public function getConnection()
+    {
+
+        $this->conn = null;
+
         $db_dsn = array(
             'host'    => $this->host,
             'dbname'  => $this->db_name,
@@ -39,22 +42,7 @@ class Database
             );
             exit;
         }
-    }
 
-    // Get the database connection
-    public function getConnection()
-    {
         return $this->conn;
-    }
-
-    // Called a design patent --> advanced programming
-    // This makes sure the code is structured properly, therefore running the most efficiently
-    // This specifically is called a singleton pattern (this is avoiding writing the same database connection over and over, and re-uses this one when detected)
-    public static function getInstance(){
-        if(!self::$instance){
-            self::$instance = new Database();
-        }
-        
-        return self::$instance;
     }
 }
