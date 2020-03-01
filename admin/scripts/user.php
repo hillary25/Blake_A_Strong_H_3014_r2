@@ -2,7 +2,7 @@
 
 // Be able to use phpmailer (following installation instructions)
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+//use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 // This loads phpmailer (following installation instructions)
@@ -15,9 +15,9 @@ function createUser($fname, $username, $email){
     $create_user_query = 'INSERT INTO tbl_user(user_fname, user_name, user_pass, user_email, user_ip)';
     $create_user_query .= ' VALUES(:fname, :username, :password, :email, "no" )';
 
-    $password_picker = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+    $password_picker = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     $generated_password = mixed_password($password_picker, 5);
-    $to = $email;
+    
 
     $create_user_set = $pdo->prepare($create_user_query);
     $create_user_result = $create_user_set->execute(
@@ -33,8 +33,8 @@ function createUser($fname, $username, $email){
     // Otherwise, return an error message
     if($create_user_result){
 
-        // Add phpmailer here
-        // When it creates a user, it should send out info mail to them
+        // Add phpmailer here (following tutorial in reference list)
+        // When it creates a user, it should send out info mail to them...
         $mail = new PHPMailer;
 
 
@@ -86,7 +86,7 @@ function createUser($fname, $username, $email){
         Thank you! Have a nice day.';
 
         // Send the mail with phpmailer
-        if($mail->send()){
+        if(!$mail->send()){
             echo 'Your login info has been sent.';
         }else{
             echo 'The login info was not sent. Please try again.';

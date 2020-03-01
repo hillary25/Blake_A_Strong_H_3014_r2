@@ -8,6 +8,6 @@ function redirect_to($location){
     }
 }
 
-function mixed_password($password_picker, $chars){
-    return substr(str_shuffle($password_picker), 0, $chars);
+function mixed_password($password_picker, $character){
+    return substr(str_shuffle($password_picker), 0, $character);
 }
