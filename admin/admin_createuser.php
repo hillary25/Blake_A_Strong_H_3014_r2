@@ -6,13 +6,12 @@ confirm_logged_in();
 if(isset($_POST['submit'])){
     $fname = trim($_POST['fname']);
     $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
     $email = trim($_POST['email']);
 
-    if(empty($email) || empty($password) || empty($username) || empty($fname)){
+    if(empty($email) || empty($username) || empty($fname)){
         $message = 'Please fill out of the fields. All are required.';
     }else{
-        $message = createUser($fname, $username, $password, $email);
+        $message = createUser($fname, $username, $email);
     }
 }
 ?>
@@ -34,8 +33,8 @@ if(isset($_POST['submit'])){
         <label>Username</label>
         <input type="text" name="username" value=""><br><br>
 
-        <label>Password</label>
-        <input type="text" name="password" value=""><br><br>
+        <!-- <label>Password</label>
+        <input type="text" name="password" value=""><br><br> -->
 
         <label>Email</label>
         <input type="email" name="email" value=""><br><br>

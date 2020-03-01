@@ -7,3 +7,7 @@ function redirect_to($location){
         exit; // This is an important part of code to add
     }
 }
+
+function mixed_password($password_picker, $chars){
+    return substr(str_shuffle($password_picker), 0, $chars);
+}
