@@ -96,7 +96,11 @@ function createUser($fname, $username, $email){
             echo 'The login info was not sent. Please try again.';
         }
 
+        // When you click the submit, this will redirect you to the index
+        // Comment the line below out if you want to see the 'your login info has been sent' message
+        // Trying to debug why it is not actually sending through
         redirect_to('index.php');
+
     }else{
         return 'The user submission did not go though.';
     }
