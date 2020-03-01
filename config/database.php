@@ -8,10 +8,10 @@ class Database
 
     private $username = "root";
 
-    private $password = "root";
+    private $password = "root"; // Need root here for Mac connection
 
     private static $instance = null;
-   
+
     public $conn;
 
     private function __construct(){
@@ -47,13 +47,14 @@ class Database
         return $this->conn;
     }
 
-    // This is a design pattern - makes sure our code is structured properly to run the most efficient way
-    // This one avoids doing the same thing again - reuses the same database instead of creating a new one each time
+    // Called a design patent --> advanced programming
+    // This makes sure the code is structured properly, therefore running the most efficiently
+    // This specifically is called a singleton pattern (this is avoiding writing the same database connection over and over, and re-uses this one when detected)
     public static function getInstance(){
         if(!self::$instance){
             self::$instance = new Database();
         }
-
+        
         return self::$instance;
     }
 }
