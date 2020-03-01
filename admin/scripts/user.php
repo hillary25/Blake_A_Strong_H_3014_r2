@@ -1,12 +1,7 @@
 <?php
 
-// Be able to use phpmailer (following installation instructions)
-use PHPMailer\PHPMailer\PHPMailer;
-//use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
-
 // This loads phpmailer (following installation instructions)
-require '../vendor/autoload.php';
+require '../phpmailer/PHPMailerAutoload.php';
 
 function createUser($fname, $username, $email){
     $pdo = Database::getInstance()->getConnection();
@@ -40,7 +35,7 @@ function createUser($fname, $username, $email){
 
         // SERVER SETTINGS
         // Debugger
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
         // Send using STMP
         $mail->isSMTP();
@@ -51,6 +46,9 @@ function createUser($fname, $username, $email){
         // SMTP authentication
         $mail->SMTPAuth = true;
 
+        //SMTP security
+        $mail->SMTPSecure = 'tls';
+
         // Who email will send from
         $mail->Username   = 'hillarystrongportfolio@gmail.com';
 
@@ -58,7 +56,7 @@ function createUser($fname, $username, $email){
         $mail->Password   = '@Portfolio100';
 
         // Encryption
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
         // Set the port number
         $mail->Port = 587;
@@ -71,8 +69,14 @@ function createUser($fname, $username, $email){
         // Who the create user email will be sent to (the recipient)
         $mail->addAddress($email, $fname);
 
+        // Reply to this email address with questions
+        $mail->addReplyTo('hillarystrongportfolio@gmail.com');
+
 
         // CONTENT OF EMAIL
+        // Sending
+        $mail->isHTML(true);
+
         // Subject line on email sent
         $mail->Subject = 'Your account info is here!';
 
