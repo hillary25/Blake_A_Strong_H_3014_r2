@@ -42,5 +42,7 @@ if(isset($_POST['submit'])){
         <button name='submit'>Create User</button>
     </form>
     
+    <a href="index.php">Return to Dashboard</a>
+    <a href="admin_login.php">Log in with your new credentials</a>
 </body>
 </html>

@@ -8,7 +8,7 @@ class Database
 
     private $username = "root";
 
-    private $password = "root"; // Need root here for Mac connection
+    private $password = ""; // Need root here for Mac connection
 
     private static $instance = null;
 

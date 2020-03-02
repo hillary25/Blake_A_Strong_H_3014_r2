@@ -9,5 +9,6 @@ function redirect_to($location){
 }
 
 function mixed_password($password_picker, $character){
+    // Returns the first 'character' characters of a shuffled version of 'password_picker'
     return substr(str_shuffle($password_picker), 0, $character);
 }

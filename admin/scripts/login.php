@@ -1,10 +1,11 @@
 <?php
 
 function login($username, $password, $ip){
-    // Debug
+    // Set the password to the encrypted version of itself for comparison to encrypted version in the database using the md5 function
+    $password = md5($password);
 
-    // sprintf allows you to use % and switch out for varible on the browser screen
-    //$message = sprintf('You are trying to login with username %s and password %s', $username, $password);
+    // Default to password being incorrect. This message will be overwritten if other errors occur
+    $message = 'Your password is incorrect';
 
     $pdo = Database::getInstance()->getConnection();
     // Check existance
